@@ -53,3 +53,11 @@ You're starting a shell using sh (alpine doesn't have bash) and running yarn ins
 and then running yarn run dev to start the development server. 
 If you look in the package.json, you'll see that the dev script starts nodemon.
 At this point, you can persist your database and see changes in your app as you develop without rebuilding the image.
+
+Connect to MySQL database:
+`docker run -d --network todo-app --network-alias mysql -v todo-mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_DATABASE=todos mysql:8.0`
+To confirm you have the database up and running, connect to the database and verify that it connects.
+`docker exec -it <mysql-container-id> mysql -u root -p`
+mysql> SHOW DATABASES;
+mysql> exit
+
